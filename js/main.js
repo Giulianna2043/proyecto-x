@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*----------------crear imagen de enviar----------------*/
 /*var send =document.createElement("i");
 send.className="icon-insert_emoticon", "w-write-message-icon";
@@ -17,14 +18,42 @@ function enviar(evt){
 
 /*
 
+=======
+ /*-------------buscador------*/
+
+  var search = document.getElementById("search");
+  var contacto = document.getElementsByTagName("h4");
+  var forEach = Array.prototype.forEach;
+ 
+ search.addEventListener("keyup", function(e){
+   var choice = this.value;
+ 
+   forEach.call(contacto, function(f){
+       if (f.innerHTML.toLowerCase().search(choice.toLowerCase()) == -1)
+           f.parentNode.parentNode.style.display = "none";   
+       else
+          f.parentNode.parentNode.style.display = "block";        
+   });
+ }, 
+ false);
+ /*-------------end buscador------*/
+
+/*------------Agregar Mensaje-------------*/
+>>>>>>> 8f128495df9dd3de75a9b9ba361365a00a33485e
 var mensajes = document.getElementById('mensajes');
 var chat = document.getElementById('chat');
 mensajes.addEventListener('keyup', onMensajesClick);
 
 function onMensajesClick(evt){
+<<<<<<< HEAD
     //si preciono enter
     if(evt.keyCode==13){
         agregarMensaje();
+=======
+    //si preciono enter     
+    if(evt.keyCode==13){
+        agregarMensaje();    
+>>>>>>> 8f128495df9dd3de75a9b9ba361365a00a33485e
     }
     }
 
@@ -35,7 +64,11 @@ function agregarMensaje()
             var hora = fecha.getHours()+":"+fecha.getMinutes();
             window.status=hora;
     //agregar el mesaje tipeado en id=chat
+<<<<<<< HEAD
     if(mensajes.value!==""){
+=======
+    if(mensajes.value!==""){       
+>>>>>>> 8f128495df9dd3de75a9b9ba361365a00a33485e
             //creeun elementos para nombre, texto y hora
             var abuela = document.createElement("div");
             abuela.classList = "w-message w-message-out";
@@ -48,11 +81,16 @@ function agregarMensaje()
             divHoraHijo.innerHTML=hora;
             divHoraHijo.style.float="right";
             //cree un elementos para nombre texto hora***END
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 8f128495df9dd3de75a9b9ba361365a00a33485e
             //Creando paquete mensaje
             madre.appendChild(h5NombreHijo);
             madre.appendChild(pMensajesHijo);
             madre.appendChild(divHoraHijo);
+<<<<<<< HEAD
             abuela.appendChild(madre);
             chat.appendChild(abuela);
             mensajes.value="";
@@ -136,3 +174,14 @@ function sendMensajes(){
     
 }
 
+=======
+            abuela.appendChild(madre); 
+            chat.appendChild(abuela);        
+            mensajes.value="";      
+            //Scroll 
+            chat.scrollTop = chat.scrollHeight;
+            
+    }   
+}
+/*---------END---Agregar Mensaje-------------*/
+>>>>>>> 8f128495df9dd3de75a9b9ba361365a00a33485e
