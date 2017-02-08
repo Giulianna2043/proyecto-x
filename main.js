@@ -28,6 +28,7 @@ function init()
 	initChatList();
 }
 function initChatList() {
+    //elListaChats==ul
 	var elListaChats = document.getElementById("lista-chats");
 
 	for (var i in dataListaChats) {
@@ -47,7 +48,6 @@ function initChatList() {
 function setEventsChatList() {
 	var listaChats = document.getElementById('lista-chats');
 	var arrListItems = listaChats.getElementsByTagName('li');
-
 	for (var i = 0; i < arrListItems.length; i++) {
 		/*arrListItems[i].onclick = function(){
 		 alert("Click!");
@@ -122,7 +122,7 @@ function crearChat(_mensaje){
 			'<div class="time" id="hora">'+ d.getHours() + ':' + d.getMinutes();+  '</div>';
 
 		liListItem.innerHTML = htmlChatItem;
-
+            //Inserte una nueva <li> elemento antes de que el primer elemento hijo de un elemento <ul>
 		elListaChats.insertBefore(liListItem, elListaChats.childNodes[0]);
 	}
 	setEventsChatList();
@@ -142,14 +142,14 @@ function actualizarCabeceraChat(_contactName, _imageURL, _estado){
 	chat.getElementsByClassName('w-contact-name')[0].innerHTML = _contactName;
 	chatHeader.getElementsByClassName('w-users-messages')[0].innerHTML = _estado;
 	chatHeader.getElementsByTagName('img')[0].src = _imageURL;
-} */   
+} */ 
 
 
 
 //buscador
-var search = document.getElementById("search");
-  var contacto = document.getElementsByTagName("h4");
-  var forEach = Array.prototype.forEach;
+    var search = document.getElementById("search");
+    var contacto = document.getElementsByTagName("h4");
+    var forEach = Array.prototype.forEach;
  
  search.addEventListener("keyup", function(e){
    var choice = this.value;
