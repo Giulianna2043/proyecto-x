@@ -1,26 +1,28 @@
 //Lógica
-function Chat(_nombre, _imagen)
+function Chat(_nombre, _imagen,mensaje,hora)
 {
 	this.nombre =  _nombre;
 	this.imagenURL = _imagen;
-	this.ultimoMensaje = "";
-	this.horaUltimoMensaje = '';
+	this.ultimoMensaje = mensaje;
+	this.horaUltimoMensaje = hora;
 
 	/*this.borrarMensajes = function()
 	{
 		alert("borrado");
 	};*/
 }
-
 var dataListaChats = [
-	new Chat("Laboratoria", 'image/logocodeacademy.png',"buenos dias"),
-	new Chat("Katy", 'image/katy.jpg'),
-	new Chat("chat 3", 'image/chat1.png')
+	new Chat("Laboratoria", 'image/logocodeacademy.png',"buenos dias","11:35"),
+	new Chat("Katy", 'image/katy.jpg',"laboratoria","11:22"),
+	new Chat("bart", 'image/bart.jpg',"buscando inmformacion","10:35"),
+    new Chat("bart", 'image/bart.jpg',"buscando inmformacion","10:35"),
+    new Chat("bart", 'image/bart.jpg',"buscando inmformacion","10:35"),
+    new Chat("bart", 'image/bart.jpg',"buscando inmformacion","10:35"),
+	
 ];
 
 //Parte visual
 var liListItem = null;
-
 function init()
 {
 	initChatList();
@@ -59,7 +61,8 @@ function onChatItemClick(evt) {
 	var contactName = evt.currentTarget.getElementsByClassName('w-contact-name')[0].textContent;
 	var imgURL = evt.currentTarget.getElementsByClassName('wh-44')[0].src;
 	console.log('click');
-	actualizarCabeceraChat(contactName, imgURL, "Conectado");
+	
+    crearListaChats();
 }
 
 function onMensajeKey(evt){
@@ -72,7 +75,7 @@ function onMensajeKey(evt){
 		elInputMensajes.value = "";
 	}
 }
-
+    
 function crearMensaje(_mensaje) {
 	var htmlMensajeIn = '<div class="w-message w-message-in">' +
 		'<div class="w-message-text">' +
@@ -100,13 +103,15 @@ function crearMensaje(_mensaje) {
 	elChat.innerHTML += htmlMensajeOut;
 	elChat.scrollTop = elChat.scrollHeight;
 }
-
+    
 function crearListaChats(){
- 
+var chat=document.getElementById("chat");
+    chat.innerHTML="";
 }
+    
 function crearChat(_mensaje){
 	var elListaChats = document.getElementById("lista-chats");
-
+    var d = new Date();
 	if (liListItem == null) {
 		liListItem = document.createElement('LI');
 		var htmlChatItem = '<div class="avatar">' +
@@ -114,21 +119,31 @@ function crearChat(_mensaje){
 			'<h4 class="w-contact-name">Laboratoria Perú</h4>' +
 			'<p class="w-last-message" id="mensaje">' + _mensaje + '</p>' +
 			'</div>' +
-			'<div class="time" id="hora">14:27</div>';
+			'<div class="time" id="hora">'+ d.getHours() + ':' + d.getMinutes();+  '</div>';
 
 		liListItem.innerHTML = htmlChatItem;
 
 		elListaChats.insertBefore(liListItem, elListaChats.childNodes[0]);
 	}
 	setEventsChatList();
+    
 	//elListaChats.innerHTML += htmlChatItem;
 }
+    
 function actualizarCabeceraChat(_contactName, _imageURL, _estado){
 	var chatHeader = document.getElementById("chat-header");
 	chatHeader.getElementsByClassName('w-contact-name')[0].innerHTML = _contactName;
 	chatHeader.getElementsByClassName('w-users-messages')[0].innerHTML = _estado;
 	chatHeader.getElementsByTagName('img')[0].src = _imageURL;
-}
+} 
+
+/*function actualizarChat(_contactName){
+	var chat = document.getElementById("chat");
+	chat.getElementsByClassName('w-contact-name')[0].innerHTML = _contactName;
+	chatHeader.getElementsByClassName('w-users-messages')[0].innerHTML = _estado;
+	chatHeader.getElementsByTagName('img')[0].src = _imageURL;
+} */   
+
 
 
 //buscador
