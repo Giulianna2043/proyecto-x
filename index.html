@@ -12,8 +12,55 @@
 	  	<link href="css/font-awesome.min.css" rel="stylesheet">
 	  	<link href="css/main.css" rel="stylesheet">
 	  	<link href="css/queries.css" rel="stylesheet">
+			<script type=""src="http:clientes.geekadvice.pe:4000/socket.io/socket.io.js"></script>
+
+
+			<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+			<script>
+			var socket;
+			window.onload=function(){
+				socket=io.connect("http:clientes.geekadvice.pe:4000");
+				socket.on("list_users",function(_users){
+					console.log(_users);
+					drawUsers(_users);
+				});
+
+				socket.on('new_user',function(_users){
+					$('#lista-usuarios').append('<li>'+_users.name+'</li>')
+				});
+					$("#btn-ingresar").click(identificar);
+
+					socket.on('send',function(_msg){
+						$('#lista-mensajes').append('<li>'+_user.name+'</li>')
+					});
+				};
+
+
+		function identificar()
+		{
+			socket.emit('identify',$("#name").val());
+		}
+
+		function drawUsers(_users)
+		{
+			var lista=$('#lista-usuarios')
+			for (var i in _users)
+			{
+				lista.append('<li>'+_users[i].name+'</li>');
+			}
+		}
+
+
+			</script>
+
 	</head>
-	<body onload="init()">
+	<body>
+
+		<div class="">
+
+			<input type="text" name="" value="" id="name">
+			<button type="button" name="button" id="btn-ingresar">Ingresar</button>
+		</div>
 
 	  	<div class="w-app">
 	  		<div class="container">
@@ -32,8 +79,8 @@
 
 	  					<input type="text" placeholder="Buscar o empezar un chat nuevo" class="w-search-contacts" id="search">
 	  				</div>
-	  				<ul class="w-recent-chats" id="lista-chats">
-	  					
+	  				<ul class="w-recent-chats" id="lista-usuarios">
+
 	  				</ul>
 	  			</aside>
 	  			<section class="col-md-8 w-contacts w-messages">
@@ -58,7 +105,7 @@
 	  					</div>
 	  				</header>
 	  				<section class="w-chat-panel">
-	  					<div class="w-message-list clearfix" id="chat">
+	  					<div class="w-message-list clearfix" id="lista-mensajes">
 	  						<div class="w-message w-message-in">
 	  							<div class="w-message-text">
 	  								<h5 class="blue-1">Andrea Lamas</h5>
@@ -153,9 +200,9 @@
 	  							</div>
 	  						</div>
 
-	  						
-	  							
-	  						</div>  			
+
+
+	  						</div>
 	  					</div>
 	  				</section>
 
